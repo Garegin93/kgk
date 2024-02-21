@@ -40,7 +40,7 @@ onMounted(() => {
 
 <template>
   <section class="basis-1/3 flex flex-col gap-4 min-w-[25rem] overflow-y-auto">
-    <div class="flex justify-between gap-2">
+    <div class="flex justify-between gap-2 p-1">
       <h2 class="text-3xl font-semibold text-gray-700">Точки</h2>
       <IconField
           iconPosition="right">
