@@ -1,0 +1,26 @@
+@tailwind components;
+@tailwind utilities;
+
+/* Order */
+@layer reset, primevue;
+
+/* Reset CSS */
+@layer reset {
+    @tailwind base;
+    }
+
+body {
+    @apply m-10
+    }
+
+::-webkit-scrollbar {
+    @apply h-2.5 w-2.5
+    }
+
+::-webkit-scrollbar-track {
+    @apply bg-[#aeb4bb50] rounded-2xl
+    }
+
+::-webkit-scrollbar-thumb {
+    @apply bg-purple-500 rounded-2xl
+    }
