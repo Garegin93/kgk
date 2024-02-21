@@ -8,7 +8,6 @@ import {IDot} from "../../interfaces/dot.interface";
 
 const {
   setIsChecked,
-  getIsCheckedById,
   setCoordinatesCollection,
 } = useDotsStore();
 
@@ -19,13 +18,10 @@ const props = defineProps({
   }
 })
 
-const isCheckedById = ref<boolean | undefined>(getIsCheckedById(props.data.id))
-
 function toggleChecked(data: IDot, event: MouseEvent): void {
   event.preventDefault()
   setIsChecked(data.id);
   setCoordinatesCollection(data)
-  isCheckedById.value = getIsCheckedById(data.id)
 }
 
 </script>
@@ -33,7 +29,7 @@ function toggleChecked(data: IDot, event: MouseEvent): void {
 <template>
   <div
       @click="toggleChecked(data as IDot, $event)"
-      :class="isCheckedById ? 'border-purple-500' : 'border-gray-200'"
+      :class="data.isChecked ? 'border-purple-500' : 'border-gray-200'"
       class='p-4 rounded-lg border flex flex-col gap-2 text-purple-500 whitespace-nowrap cursor-pointer'>
     <div class="flex justify-between gap-2">
       <div class="flex justify-center items-center gap-2">

@@ -29,10 +29,6 @@ export const useDotsStore = defineStore({
             return first;
         },
         getDotsLength: (state) => state.dots.length,
-        getIsCheckedById: (state) => (id: number): boolean | undefined => {
-            const dot = state.dots.find(dot => dot.id === id);
-            return dot?.isChecked;
-        },
         getCoordinatesCollection: (state) => state.coordinatesCollection
     },
     actions: {
