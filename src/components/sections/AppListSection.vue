@@ -24,16 +24,16 @@ const selectAllCoordinates = (): void => {
 }
 
 
-const filteredDots = computed(() => {
+const filteredDots = computed<IDot[]>(() => {
   if (!search.value.trim()) return getDots;
 
-  const searchNumber = parseInt(search.value.trim(), 10);
+  const searchNumber: number = parseInt(search.value.trim(), 10);
 
   return getDots.filter((dot: IDot) => dot.id === searchNumber);
 });
 
 onMounted(() => {
-  setCoordinatesCollection(getFirstDot)
+  setCoordinatesCollection(getFirstDot as IDot)
 })
 
 </script>
