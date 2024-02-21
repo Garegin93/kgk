@@ -35,7 +35,7 @@ function toggleChecked(data: IDot, event: MouseEvent): void {
   <div
       @click="toggleChecked(data as IDot, $event)"
       :class="isCheckedById ? 'border-purple-500' : 'border-gray-200'"
-      class='p-4 rounded-lg border flex flex-col gap-2 text-purple-500 whitespace-nowrap cursor-pointer mr-2'>
+      class='p-4 rounded-lg border flex flex-col gap-2 text-purple-500 whitespace-nowrap cursor-pointer'>
     <div class="flex justify-between gap-2">
       <div class="flex justify-center items-center gap-2">
         <Checkbox

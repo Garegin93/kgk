@@ -85,7 +85,7 @@ onMounted(() => {
     <VirtualScroller
         v-else
         :pt="{
-      content: {class: ['grid grid-cols-1 gap-2']}
+      content: {class: ['grid grid-cols-1 gap-2 pr-2']}
         }"
         :items="filteredDots"
         showLoader
