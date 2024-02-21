@@ -88,13 +88,15 @@ onMounted(() => {
       content: {class: ['grid grid-cols-1 gap-2 pr-2']}
         }"
         :items="filteredDots"
+        :appendOnly="true"
         showLoader
         :delay="150"
         :itemSize="20"
         style="width: 100%; height: 78dvh">
       <template
           v-slot:item="{ item }">
-        <AppDotsCard :data="item"/>
+        <AppDotsCard
+            :data="item"/>
       </template>
     </VirtualScroller>
   </section>

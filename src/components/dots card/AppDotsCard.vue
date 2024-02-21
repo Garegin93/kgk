@@ -26,7 +26,6 @@ function toggleChecked(data: IDot, event: MouseEvent): void {
   setIsChecked(data.id);
   setCoordinatesCollection(data)
   isCheckedById.value = getIsCheckedById(data.id)
-  console.log('test')
 }
 
 </script>
@@ -39,7 +38,7 @@ function toggleChecked(data: IDot, event: MouseEvent): void {
     <div class="flex justify-between gap-2">
       <div class="flex justify-center items-center gap-2">
         <Checkbox
-            v-model="isCheckedById"
+            v-model="data.isChecked"
             :binary="true"
         />
         <label
