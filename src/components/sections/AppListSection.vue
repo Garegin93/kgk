@@ -85,17 +85,12 @@ onMounted(() => {
     <p v-if='!filteredDots.length'>Нет результатов</p>
     <VirtualScroller
         v-else
-
-        :appendOnly="true"
-        :delay="20"
         :itemSize="50"
         :items="filteredDots"
         :lazy="true"
         :pt="{
       content: {class: ['grid grid-cols-1 gap-2 pr-2']}
-        }"
-
-        style="width: 100%; height: 100%">
+        }">
       <template
           v-slot:item="{ item }">
         <AppDotsCard
