@@ -1,19 +1,20 @@
-<script setup lang="ts">
-import {IDot} from "../../interfaces/dot.interface";
+<script lang="ts" setup>
+import {IDot} from "../../interfaces/dots.interface";
 import {computed, onMounted, ref} from "vue";
-import AppSearchIcon from "../svg icons/AppSearchIcon.vue";
-import AppBrushIcon from "../svg icons/AppBrushIcon.vue";
-import AppLocationIcon from "../svg icons/AppLocationIcon.vue";
-import AppDotsCard from "../dots card/AppDotsCard.vue";
-import {useDotsStore} from "../../../store/useDotsStore";
+import AppSearchIcon from "../../../svg-icons/AppSearchIcon.vue";
+import AppBrushIcon from "../../../svg-icons/AppBrushIcon.vue";
+import AppLocationIcon from "../../../svg-icons/AppLocationIcon.vue";
+import AppDotsCard from "../dots-card/AppDotsCard.vue";
+import {dots} from "../../../store/dots";
 
 const {
   getDotsLength,
   getDots,
   setAllIsChecked,
   setCoordinatesCollection,
-  getFirstDot
-} = useDotsStore()
+  getFirstDot,
+  setFirstDotChecked
+} = dots()
 
 const checkedAll = ref<boolean>(false)
 
@@ -22,7 +23,6 @@ const search = ref<string>('')
 const selectAllCoordinates = (): void => {
   setAllIsChecked(checkedAll.value)
 }
-
 
 const filteredDots = computed<IDot[]>(() => {
   if (!search.value.trim()) return getDots;
@@ -34,6 +34,7 @@ const filteredDots = computed<IDot[]>(() => {
 
 onMounted(() => {
   setCoordinatesCollection(getFirstDot as IDot)
+  setFirstDotChecked()
 })
 
 </script>
@@ -48,25 +49,25 @@ onMounted(() => {
           <AppSearchIcon class="w-4 h-4"/>
         </InputIcon>
         <InputText
-            min="0"
             v-model="search"
-            type="number"
-            placeholder="Search"/>
+            min="0"
+            placeholder="Search"
+            type="number"/>
       </IconField>
 
     </div>
     <div class="flex justify-between items-center gap-2">
       <div class="flex justify-center gap-2">
         <Checkbox
-            @change="selectAllCoordinates"
             v-model="checkedAll"
             :binary="true"
-            input-id="checkedAll"
             :pt="{
               input: {
               class: ['border-black border-10px block']
               }
             }"
+            input-id="checkedAll"
+            @change="selectAllCoordinates"
         />
         <label
             class="font-semibold cursor-pointer"
@@ -84,19 +85,22 @@ onMounted(() => {
     <p v-if='!filteredDots.length'>Нет результатов</p>
     <VirtualScroller
         v-else
+
+        :appendOnly="true"
+        :delay="20"
+        :itemSize="50"
+        :items="filteredDots"
+        :lazy="true"
         :pt="{
       content: {class: ['grid grid-cols-1 gap-2 pr-2']}
         }"
-        :items="filteredDots"
-        :appendOnly="true"
-        showLoader
-        :delay="150"
-        :itemSize="20"
-        style="width: 100%; height: 78dvh">
+
+        style="width: 100%; height: 100%">
       <template
           v-slot:item="{ item }">
         <AppDotsCard
-            :data="item"/>
+            :data="item"
+            :numToleratedItems="100"/>
       </template>
     </VirtualScroller>
   </section>

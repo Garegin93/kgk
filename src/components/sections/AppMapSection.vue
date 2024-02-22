@@ -1,14 +1,14 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {ref} from "vue";
 import "leaflet/dist/leaflet.css"
 import {LControl, LIcon, LMap, LMarker, LPopup, LTileLayer} from "@vue-leaflet/vue-leaflet"
-import Contacts4 from '../../assets/images/Contacts4.svg'
-import {useDotsStore} from "../../../store/useDotsStore";
-import AppMapLocationIcon from "../svg icons/AppMapLocationIcon.vue";
-import AppCurrentLocationIcon from "../svg icons/AppCurrentLocationIcon.vue";
-import AppCompanyIcon from "../svg icons/AppCompanyIcon.vue";
+import Contacts4 from '/images/Contacts4.svg'
+import {dots} from "../../../store/dots";
+import AppMapLocationIcon from "../../../svg-icons/AppMapLocationIcon.vue";
+import AppCurrentLocationIcon from "../../../svg-icons/AppCurrentLocationIcon.vue";
+import AppCompanyIcon from "../../../svg-icons/AppCompanyIcon.vue";
 
-const {getFirstDot, getCoordinatesCollection} = useDotsStore()
+const {getFirstDot, getCoordinatesCollection} = dots()
 
 const zoom = ref<number>(2)
 
@@ -31,32 +31,32 @@ const iconOptions = ref<IconOptionsType>({
 <template>
   <section class="basis-2/3 relative">
     <LMap
-        v-model:zoom="zoom"
         v-model:center="center"
+        v-model:zoom="zoom"
         :useGlobalLeaflet="false"
     >
       <LTileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          :attribution="'Карты'"
           layer-type="base"
           name="OpenStreetMap"
-          :attribution="'Карты'"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       >
       </LTileLayer>
       <LControl>
         <h2 class="text-3xl font-semibold text-gray-700">Карта</h2>
       </LControl>
       <LMarker
-          @click=""
           v-for="dot in getCoordinatesCollection"
           :key="dot.id"
           :lat-lng="dot.coordinates"
           :options="{attributionControl: false}"
+          @click=""
       >
         <LIcon :options="iconOptions">
         </LIcon>
         <LPopup
-            class="h-full w-full"
-            :options="{closeButton: false, visible:true, maxWidth:'400px'}">
+            :options="{closeButton: false, visible:true, maxWidth:'400px'}"
+            class="h-full w-full">
           <div class="p-1 whitespace-nowrap font-semibold flex flex-col gap-4">
             <div class="flex items-center gap-2">
               <AppMapLocationIcon class="w-6 h-6 fill-purple-500"/>
