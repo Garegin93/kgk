@@ -24,3 +24,11 @@ body {
 ::-webkit-scrollbar-thumb {
     @apply bg-purple-500 rounded-2xl
     }
+
+.leaflet-container {
+    @apply rounded-lg;
+    }
+
+.leaflet-popup-content p {
+    @apply m-0;
+    }

@@ -1,0 +1,13 @@
+<svg
+        viewBox="0 0 30 30"
+        xmlns="http://www.w3.org/2000/svg">
+    <path
+            d="M15 3C8.384 3 3 8.384 3 15s5.384 12 12 12 12-5.384 12-12S21.616 3 15 3zm0 2c5.535 0 10 4.465 10 10s-4.465 10-10 10S5 20.535 5 15 9.465 5 15 5zm0 4a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6z"
+            style="opacity:1;
+        fill-opacity:1;
+        stroke:none;
+        stroke-width:.5;
+        stroke-miterlimit:4;
+        stroke-dasharray:none;
+        stroke-opacity:1"/>
+</svg>
