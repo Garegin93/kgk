@@ -12,7 +12,6 @@
     "leaflet": "^1.9.4",
     "pinia": "^2.1.7",
     "primevue": "^3.48.1",
-    "uuid": "^9.0.1",
     "vue": "^3.4.15"
   },
   "devDependencies": {
