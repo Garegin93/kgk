@@ -12,11 +12,12 @@
     "leaflet": "^1.9.4",
     "pinia": "^2.1.7",
     "primevue": "^3.48.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.15",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
-    "@vue/cli-service": "^5.0.8",
+    "@vue/cli-service": "^3.3.1",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
     "sass": "^1.71.1",

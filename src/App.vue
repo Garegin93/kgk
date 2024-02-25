@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import AppListSection from "./components/sections/AppListSection.vue";
-import AppMapSection from "./components/sections/AppMapSection.vue";
+import AppListSection from "@/components/sections/AppListSection.vue";
+import AppMapSection from "@/components/sections/AppMapSection.vue";
 </script>
 
 <template>

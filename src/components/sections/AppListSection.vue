@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { IDot } from "../../interfaces/dots.interface.ts";
+import { IDot } from "@/interfaces/dots.interface.ts";
 import { computed, onMounted, ref } from "vue";
-import searchIcon from "../../svg-icons/searchIcon.svg";
-import brushIcon from "../../svg-icons/brushIcon.svg";
-import nearestLocationIcon from "../../svg-icons/nearestLocationIcon.svg";
-import AppDotsCard from "../dots-card/AppDotsCard.vue";
+import searchIcon from "@/svg-icons/searchIcon.svg";
+import brushIcon from "@/svg-icons/brushIcon.svg";
+import nearestLocationIcon from "@/svg-icons/nearestLocationIcon.svg";
 import { dots } from "../../../store/dots";
+import AppDotsCard from "@/components/dots-card/AppDotsCard.vue";
 
 const {
   getDotsLength,
@@ -14,6 +14,7 @@ const {
   setCoordinatesCollection,
   getFirstDot,
   setFirstDotChecked,
+  moveDot,
 } = dots();
 
 const checkedAll = ref<boolean>(false);
@@ -29,8 +30,26 @@ const filteredDots = computed<IDot[]>(() => {
 
   const searchNumber: number = parseInt(search.value.trim(), 10);
 
-  return getDots.filter((dot: IDot) => dot.id === searchNumber);
+  return getDots.filter((dot: IDot): boolean => dot.id === searchNumber);
 });
+
+const onDragStart = (index: number, event: DragEvent): void => {
+  if (event.dataTransfer) {
+    event.dataTransfer.setData("text/plain", index.toString());
+  }
+};
+
+const onDrop = (index: number, event: DragEvent): void => {
+  if (event.dataTransfer) {
+    const draggedIndex: number = parseInt(
+      event.dataTransfer.getData("text/plain")
+    );
+    if (draggedIndex !== index) {
+      const draggedCard: IDot = filteredDots.value[draggedIndex];
+      moveDot(draggedCard.id, index);
+    }
+  }
+};
 
 onMounted(() => {
   setCoordinatesCollection(getFirstDot as IDot);
@@ -86,16 +105,19 @@ onMounted(() => {
     </div>
     <p v-if="!filteredDots.length">Нет результатов</p>
     <VirtualScroller
-      v-else
       :itemSize="50"
       :items="filteredDots"
-      :lazy="true"
       :pt="{
         content: { class: ['grid grid-cols-1 gap-2 pr-2'] },
       }"
     >
-      <template v-slot:item="{ item }">
-        <AppDotsCard :data="item" :numToleratedItems="100" />
+      <template #item="{ item, options }">
+        <AppDotsCard
+          :data="item"
+          :index="options.index"
+          @onDragStart="onDragStart"
+          @onDrop="onDrop"
+        />
       </template>
     </VirtualScroller>
   </section>

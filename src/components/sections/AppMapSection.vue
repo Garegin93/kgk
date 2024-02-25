@@ -10,9 +10,9 @@ import {
   LTileLayer,
 } from "@vue-leaflet/vue-leaflet";
 import { dots } from "../../../store/dots";
-import locationIcon from "../../svg-icons/locationIcon.svg";
-import companyIcon from "../../svg-icons/companyIcon.svg";
-import mapLocationIcon from "../../svg-icons/mapLocationIcon.svg";
+import locationIcon from "@/svg-icons/locationIcon.svg";
+import companyIcon from "@/svg-icons/companyIcon.svg";
+import mapLocationIcon from "@/svg-icons/mapLocationIcon.svg";
 
 const { getFirstDot, getCoordinatesCollection } = dots();
 

@@ -1,4 +1,4 @@
-import { IDot } from "../interfaces/dots.interface.ts";
+import { IDot } from "@/interfaces/dots.interface.ts";
 
 export class Dot {
   dots: IDot[] = [];
